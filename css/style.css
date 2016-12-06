@@ -1,0 +1,68 @@
+/*Font mario*/
+@font-face {
+  font-family: 'mario';
+  src: url('../font/emulogic.ttf');
+}
+
+
+
+.screen{
+	height: 100vh;
+	width: 100vw;
+	background-color: rgb(129, 207, 224);
+}
+.mario{
+	background-image: url("../img/marioBig.png");
+	height: 100px;
+	width: 50px;
+	background-repeat: no-repeat;
+	background-size: contain;
+	position: absolute;
+	display: inline-block;
+	top: calc(88% - 50px);
+	left: calc(50% - 50px);
+	z-index: 10;
+}
+.fireBold{
+	position: absolute;
+	top: 85%;
+	left: 50%;
+	background-image: url("../img/fireball.png");
+	height: 20px;
+	width: 20px;
+	background-repeat: no-repeat;
+	background-size: contain;
+	display: none;
+}
+
+.evilCharakter{
+	position: absolute;
+	top: 50%;
+	left: 30%;
+	background-image: url("../img/chmurka.png");
+	width: 50px;
+	height: 80px;
+	background-repeat: no-repeat;
+	background-size: contain;
+
+}
+
+.floor{
+	position: absolute;
+	background-image: url("../img/floor.jpg");
+	background-repeat: no-repeat;
+	height: 30px;
+	width: 100vw;
+	background-size: cover;
+	top: 95%;
+}
+
+.score{
+	font-family: "mario";
+	color: white;
+	padding-left: 3%;
+	padding-top: 3%;
+	font-weight: 1em;
+	position: absolute;
+
+}
