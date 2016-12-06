@@ -1,7 +1,7 @@
 /*Font mario*/
 @font-face {
-  font-family: 'mario';
-  src: url('../font/emulogic.ttf');
+	font-family: 'mario';
+	src: url('../font/emulogic.ttf');
 }
 
 
@@ -11,6 +11,60 @@
 	width: 100vw;
 	background-color: #6386FB;
 }
+
+.screenStart{
+	height: 100%;
+	width: 100%;
+	background: rgba(0, 0, 0, 0.8);
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	z-index: 100;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.btnStart{
+	width: 130px;
+	text-align: center;
+	height: 40px;
+	color: white;
+	background-color: rgb(0, 255, 18);
+	font-family: "mario", sans-serif;
+	font-size: 1em;
+	line-height: 40px;
+	border: none;
+}
+
+.btnStart:active {
+	background-color: rgb(0, 100, 100);
+
+}
+
+.TextStart{
+	font-size: 1,5em;
+	color: white;
+	font-family: "mario", sans-serif;
+	margin-bottom: 5%;
+}
+
+.StartText{
+	display: none;
+	position: absolute;
+	width: 100vw;
+	text-align: center;
+	top: 30%;
+}
+.StartText p {
+	display: inline-block;
+	font-size: 5em;
+	color: white;
+	font-family: "mario", sans-serif;
+	margin-bottom: 5%;
+}
+
 .mario{
 	background-image: url("../img/marioBig.png");
 	height: 100px;
@@ -61,13 +115,13 @@
 }
 
 .score{
-	font-family: "mario";
+	position: absolute;
+	display: inline-block;
+	font-family: "mario", sans-serif;
 	color: white;
 	padding-left: 3%;
 	padding-top: 3%;
 	font-weight: 1em;
-	position: absolute;
-
 }
 
 .cloud{
@@ -120,4 +174,39 @@
 	width: 85px;
 	background-repeat: no-repeat;
 	background-size: contain;
+	z-index: 20;
+
+}
+.pipeTxt{
+	color: white;
+	font-size: 1.5em;
+	font-family: "mario", sans-serif;
+	position: relative;
+	top: -48%;
+	left: -30%;
+	display: none;
+}
+.luigi{
+	background-image: url("../img/luigi.png");
+	height: 100px;
+	width: 50px;
+	background-repeat: no-repeat;
+	background-size: contain;
+	position: absolute;
+	display: inline-block;
+	top: 74%;
+	left: 8%;
+	display: none;
+}
+
+.lugiTxt{
+	color: white;
+	font-size: 1em;
+	width: 200px;
+	text-align: center;
+	line-height: 1.3em;
+	font-family: "mario", sans-serif;
+	position: relative;
+	top: -48%;
+	left: -140%;
 }
