@@ -1,6 +1,7 @@
 
 $(function(){
 
+
   //posta mario i tło
   var mario = $(".mario");
   var gameScreen = $(".screen");
@@ -25,7 +26,6 @@ $(function(){
   var countMario = $(".score_count");
   var count = 0;
 
-
   //funkcja kolizji obiektow, oraz akcja po nim
   function collision(position1, size1, position2, size2, ball) {
     if (((position1.left + size1.width)  > position2.left) &&
@@ -33,21 +33,13 @@ $(function(){
     ((position2.left + size2.width)  > position1.left) &&
     ((position2.top  + size2.height) > position1.top)) {
 
-
-      evilCloud.remove();
-      ball.remove();
-
+      $(".fireBold").remove();
+      evilCloud.css("backgroundImage", "url(img/evilEnd.png)");
+      evilCloud.fadeOut();
       counter();
-
 
     }
   }
-
-  //funkcja od usuwania chmurki po 0,5 s
-  function evilDel() {
-      setTimeout(function(){ evilCloud.remove()}, 500);
-  }
-
 
   // funkcja zliczania punktow
   function counter(){
@@ -57,7 +49,16 @@ $(function(){
     }else if (count <= 99 ) {
       countMario.text("0000" + count);
     }
+    newEvilCloud();
+
   }
+  function newEvilCloud(){
+
+    setTimeout(function(){  evilCloud.css("backgroundImage", "url(img/chmurka.png)")}, 1000);
+
+    setTimeout(function(){  evilCloud.show()}, 2000);
+
+  };
   //celowanie
   gameScreen.on("click", function(event){
     var top   = event.pageY;
@@ -83,6 +84,7 @@ $(function(){
     }else {
       var speedBall = 500;
     }
+    //animacja lotu klonowanych fireballi
     fireClone.animate({ top: top, left: left }, {
       duration: speedBall,
       step    : function() {
@@ -103,19 +105,13 @@ $(function(){
     var left  = Math.floor((Math.random() * (bodyWidth - 50)) + 1);
     var top   = Math.floor((Math.random() * 300) + 1);
     var speed = Math.floor((Math.random() * 2000) + 1000);
-
+    //animacja lotu złej churki
     evilCloud.animate({ top: top, left: left }, {
       duration: speed,
       queue   : false,
       complete: animateCloudEvil
     });
   };
-  // animateCloudEvil();
-
-
-
-
-
-
+  animateCloudEvil();
 
 });

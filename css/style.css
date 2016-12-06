@@ -9,7 +9,7 @@
 .screen{
 	height: 100vh;
 	width: 100vw;
-	background-color: rgb(129, 207, 224);
+	background-color: #6386FB;
 }
 .mario{
 	background-image: url("../img/marioBig.png");
@@ -19,7 +19,7 @@
 	background-size: contain;
 	position: absolute;
 	display: inline-block;
-	top: calc(88% - 50px);
+	top: calc(87% - 53px);
 	left: calc(50% - 50px);
 	z-index: 10;
 }
@@ -33,6 +33,7 @@
 	background-repeat: no-repeat;
 	background-size: contain;
 	display: none;
+	z-index: 20;
 }
 
 .evilCharakter{
@@ -44,17 +45,19 @@
 	height: 80px;
 	background-repeat: no-repeat;
 	background-size: contain;
+	z-index: 20;
 
 }
 
 .floor{
 	position: absolute;
-	background-image: url("../img/floor.jpg");
-	background-repeat: no-repeat;
-	height: 30px;
+	background-image: url("../img/floorOne.png");
+	background-repeat: repeat-x;
+	height: 40px;
 	width: 100vw;
-	background-size: cover;
-	top: 95%;
+	background-size: contain;
+	top: 94%;
+	z-index: 10;
 }
 
 .score{
@@ -65,4 +68,56 @@
 	font-weight: 1em;
 	position: absolute;
 
+}
+
+.cloud{
+	position: absolute;
+	top: 20%;
+	left: 7%;
+	background-image: url("../img/cloud2.png");
+	height: 66px;
+	width: 86px;
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+.cloud-1{
+	position: absolute;
+	top: 20%;
+	left: 70%;
+	background-image: url("../img/cloud-1.png");
+	height: 68px;
+	width: 185px;
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+.mountain{
+	position: absolute;
+	top: 78%;
+	left: 70%;
+	background-image: url("../img/mountain.png");
+	height: 115px;
+	width: 261px;
+	background-repeat: no-repeat;
+	background-size: contain;
+
+}
+.bush{
+	position: absolute;
+	top: 87%;
+	left: 18%;
+	background-image: url("../img/bush.png");
+	height: 68px;
+	width: 185px;
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+.pipe{
+	position: absolute;
+	top: 84%;
+	left: 6%;
+	background-image: url("../img/pipe.png");
+	height: 70px;
+	width: 85px;
+	background-repeat: no-repeat;
+	background-size: contain;
 }
