@@ -143,6 +143,19 @@
 	width: 185px;
 	background-repeat: no-repeat;
 	background-size: contain;
+	z-index: 10;
+}
+.thunder{
+	position: absolute;
+	top: 25%;
+	left: 77%;
+	background-image: url("../img/błyskawica2.png");
+	height: 461px;
+	width: 68px;
+	background-repeat: no-repeat;
+	background-size: contain;
+	z-index: 0;
+	display: none;
 }
 .mountain{
 	position: absolute;

@@ -8,6 +8,9 @@ $(function(){
   var pipe = $(".pipe");
   var pipeTxt = $(".pipeTxt");
   var luigi = $(".luigi");
+  var cloudEgg = $(".cloud-1");
+  var thunder = $(".thunder");
+  var mountain = $(".mountain");
 
   //kula ognia i wymiary jej
   var fireBold = $(".fireBold");
@@ -140,7 +143,7 @@ $(function(){
     };
     animateCloudEvil();
 
-    //event dla rury
+    //event dla rury, luigi easter egg
     var counters = 0 ;
     pipe.on("click", function(e){
 
@@ -148,12 +151,30 @@ $(function(){
       if (counters == 1 || counters == 3 ) {
         setTimeout(function(){pipeTxt.show()},650);
         setTimeout(function(){pipeTxt.hide()},1700);
-      }else if (counters >= 5) {
+      }else if (counters == 5) {
+        pipeTxt.remove();
         setTimeout(function(){luigi.show()},650);
-        setTimeout(function(){luigi.hide()}, 2000);
+        setTimeout(function(){luigi.hide()}, 3000);
       }
 
 
+    });
+
+    //event dla chmury, cloud easter egg
+    var countCloud = 0;
+    cloudEgg.on("click", function(event){
+      countCloud++;
+
+      console.log(countCloud);
+      if (countCloud == 10) {
+        setTimeout(function(){thunder.slideDown(80)},480);
+        setTimeout(function(){thunder.hide()},650);
+        setTimeout(function(){mountain.css("backgroundImage", "url(img/mountain_thounder.png)");},620);
+
+      }else if (countCloud >= 4) {
+        setTimeout(function(){cloudEgg.css("backgroundImage", "url(img/cloudEgg.png)")},480);
+
+      }
     });
 
   };
