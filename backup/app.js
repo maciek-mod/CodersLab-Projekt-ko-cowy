@@ -1,82 +1,181 @@
 
 $(function(){
 
-  //zmienne do gry
-  var fireBold = $(".fireBold");
-  var mario = $(".mario");
+
+  //posta mario i tło
   var gameScreen = $(".screen");
-  var evil = $(".evilCharakter");
+  var mario = gameScreen.find(".mario");
+  var pipe = gameScreen.find(".pipe");
+  var pipeTxt = pipe.find(".pipeTxt");
+  var luigi = gameScreen.find(".luigi");
+  var cloudEgg = gameScreen.find(".cloud-1");
+  var thunder = gameScreen.find(".thunder");
+  var mountain = gameScreen.find(".mountain");
+
+  //kula ognia i wymiary jej
+  var fireBold = gameScreen.find(".fireBold");
+  var fireBoldSize ={
+    height: fireBold.height(),
+    width : fireBold.width()
+  };
+  // console.log(fireBoldSize);
+
+  //chmurka i wymiary jej
+  var evilCloud = gameScreen.find(".evilCharakter");
+  var evilCloudSize ={
+    height: evilCloud.height(),
+    width : evilCloud.width()
+  };
+
+  var screenStart = gameScreen.find(".screenStart");
+  var btnStart = screenStart.find(".btnStart");
+  var startText = gameScreen.find(".StartText");
 
 
+  //licznik
+  var countMario = $(".score_count");
+  var count = 0;
 
-
-
-
-
-  //funkcje
-  // function hideBall(fireClone) {
-  //   fireClone.fadeOut();
-  // }
-
-  gameScreen.on("click", function(event){
-
-    //wspolrzedne klikniecia
-    var xClick = event.pageX;
-    var yClick = event.pageY;
-    // console.log(xClick);
-
-    //nastawianei fireballa
-
-    //klonowanie, nadawanie displaya, animownaie proszuania sie
-    // var fireClone = fireBold.clone().insertBefore(mario);
-    // fireClone.css("display", "inline-block");
-    // fireClone.animate({ left: xClick, top: yClick},15000);
-    //
-    // //ukrywanie po dodatrciu do celu
-    // fireClone.fadeOut();
-
-
-    fireBold.animate({ left: xClick, top: yClick},1000);
-
-
-    var fireX = fireBold.offset().left;
-    var fireY = fireBold.offset().top;
-
-    var evilX = Math.ceil(evil.offset().left);
-    var evilY = Math.ceil(evil.offset().top);
-    var evilWidth = evil.width();
-    var evilHeigth = evil.height();
-
-
-
-
-    //kolizja chmurki z kula
-    // var evilX = Math.ceil(evil.offset().left);
-    // var evilY = Math.ceil(evil.offset().top);
-    // var evilWidth = evil.width();
-    // var evilHeigth = evil.height();
-    //
-    // console.log(evilX);
-    //
-    //
-    // evil.animate({ left: "50px"},15000);
-    //
-    //
-    // if (xClick >= evilX && xClick <= evilX + evilWidth && yClick >= evilY && yClick <= evilY + evilHeigth) {
-    //   console.log("dziala");
-    // }
-
-    //warunek od kolizji z forem
-    // for (var x = evilX; x <= evilX + evilWidth; x++) {
-    //   for (var y = evilY; y < evilY + evilHeigth; y++) {
-    //     if (xClick == x && yClick == y) {
-    //       evil.fadeOut("slow");
-    //     }
-    //   }
-    // }
-
+  btnStart.on("click", function(e){
+    screenStart.fadeOut(500);
+    setTimeout(function(){startText.show()}, 600);
+    setTimeout(function(){startText.hide()}, 950);
+    setTimeout(function(){startGame()}, 1000);
 
   });
 
+  function startGame(){
+    //funkcja kolizji obiektow, oraz akcja po nim
+    function collision(position1, size1, position2, size2, ball) {
+      if (((position1.left + size1.width)  > position2.left) &&
+      ((position1.top  + size1.height) > position2.top)  &&
+      ((position2.left + size2.width)  > position1.left) &&
+      ((position2.top  + size2.height) > position1.top)) {
 
+        $(".fireBold").remove();
+        evilCloud.css("backgroundImage", "url(img/evilEnd.png)");
+        evilCloud.fadeOut();
+        counter();
+
+      }
+    }
+
+    // funkcja zliczania punktow
+    function counter(){
+      count ++;
+      if (count <= 9 ) {
+        countMario.text("00000" + count);
+      }else if (count <= 99 ) {
+        countMario.text("0000" + count);
+      }else if (count <= 999 ) {
+        countMario.text("000" + count);
+      }else if (count <= 9999 ) {
+        countMario.text("00" + count);
+      }else if (count <= 99999 ) {
+        countMario.text("0" + count);
+      }else {
+        countMario.text( count);
+      }
+      newEvilCloud();
+
+    }
+
+    //pojawianie sięchmurki po trafieniu
+    function newEvilCloud(){
+
+      setTimeout(function(){  evilCloud.css("backgroundImage", "url(img/chmurka.png)")}, 1000);
+
+      setTimeout(function(){  evilCloud.show()}, 2000);
+
+    };
+    //celowanie
+    gameScreen.on("click", function(event){
+      var top   = event.pageY;
+      var left  = event.pageX;
+
+      //powielanie kul ognia do wieloktornego strzalu
+      var fireClone = fireBold.clone().insertBefore(mario);
+      fireClone.css("display", "inline-block");
+
+      //znikanie i usuniecie kuli ognia po dotarciu na miejsce
+      function hideBall(ball){
+        ball.fadeOut(0);
+        setTimeout(function(){ ball.remove() }, 1000);
+
+      }
+
+      //ruch kuli
+      var yClick = event.pageY;
+
+      //ruch kuli uzelzeniony od wysokosic klikniecia, im wyzej tym wolniej ma sie kula poruszac
+      if (yClick > 330) {
+        var speedBall = 700;
+      }else {
+        var speedBall = 500;
+      }
+      //animacja lotu klonowanych fireballi
+      fireClone.animate({ top: top, left: left }, {
+        duration: speedBall,
+        step    : function() {
+          collision(fireClone.position(), fireBoldSize, evilCloud.position(), evilCloudSize, $(this));
+          hideBall($(this));
+        },
+      });
+
+    });
+
+
+    //poruszanie sie bosa
+    function animateCloudEvil() {
+
+      //zmienna dla ograniczenia ruchu chmurtki, ze wzgledu na szerokosc ekranu
+      var bodyWidth = $(window).width();
+
+      var left  = Math.floor((Math.random() * (bodyWidth - 50)) + 1);
+      var top   = Math.floor((Math.random() * 300) + 1);
+      var speed = Math.floor((Math.random() * 2000) + 1000);
+      //animacja lotu złej churki
+      evilCloud.animate({ top: top, left: left }, {
+        duration: speed,
+        queue   : false,
+        complete: animateCloudEvil
+      });
+    };
+    animateCloudEvil();
+
+    //event dla rury, luigi easter egg
+    var counters = 0 ;
+    pipe.on("click", function(e){
+
+      counters++;
+      if (counters == 1 || counters == 3 ) {
+        setTimeout(function(){pipeTxt.show()},650);
+        setTimeout(function(){pipeTxt.hide()},1700);
+      }else if (counters == 5) {
+        pipeTxt.remove();
+        setTimeout(function(){luigi.show()},650);
+        setTimeout(function(){luigi.hide()}, 3000);
+      }
+
+
+    });
+
+    //event dla chmury, cloud easter egg
+    var countCloud = 0;
+    cloudEgg.on("click", function(event){
+      countCloud++;
+
+      console.log(countCloud);
+      if (countCloud == 10) {
+        setTimeout(function(){thunder.slideDown(80)},480);
+        setTimeout(function(){thunder.hide()},650);
+        setTimeout(function(){mountain.css("backgroundImage", "url(img/mountain_thounder.png)");},620);
+
+      }else if (countCloud >= 4) {
+        setTimeout(function(){cloudEgg.css("backgroundImage", "url(img/cloudEgg.png)")},480);
+
+      }
+    });
+
+  };
 });
