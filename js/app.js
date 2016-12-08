@@ -59,9 +59,6 @@ $(function(){
   world.preLoad=true;
   world.loop=true;
 
-
-
-
   var thunderSound = document.createElement("audio");
   thunderSound.src="sound/thunder.mp3";
   thunderSound.volume=0.90;
@@ -75,9 +72,7 @@ $(function(){
   angryluigi.preLoad=true;
 
 
-
-
-
+  //start gry
   btnStart.on("click", function(e){
     screenStart.fadeOut(500);
     setTimeout(function(){startText.show()}, 600);
@@ -296,7 +291,6 @@ $(function(){
         setTimeout(function(){angryluigi.play()},650);
         setTimeout(function(){luigi.hide()}, 3000);
       }
-
 
     });
 
