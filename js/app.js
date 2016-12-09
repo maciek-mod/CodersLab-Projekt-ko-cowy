@@ -1,7 +1,6 @@
 
 $(function(){
 
-
   //posta mario i tło
   var gameScreen = $(".screen");
   var mario = gameScreen.find(".mario");
@@ -12,6 +11,7 @@ $(function(){
   var thunder = gameScreen.find(".thunder");
   var thunderDead = gameScreen.find(".thunder2");
   var mountain = gameScreen.find(".mountain");
+  var timeCount = gameScreen.find(".time_count");
 
   //kula ognia i wymiary jej
   var fireBold = gameScreen.find(".fireBold");
@@ -37,8 +37,6 @@ $(function(){
   var endScreen = gameScreen.find(".screenEnd");
   var endTxt = gameScreen.find(".endTxt");
   var gameOver = gameScreen.find(".gameOver");
-
-
 
   //licznik
   var countMario = $(".score_count");
@@ -82,7 +80,6 @@ $(function(){
   soundDie.autoPlay=false;
   soundDie.preLoad=true;
 
-
   // start gry
   btnStart.on("click", function(e){
     screenStart.fadeOut(500);
@@ -94,10 +91,11 @@ $(function(){
 
   function deadMario(text1, text2){
     world.pause();
-    setTimeout(function(){soundDie.play()},1000);
-    setTimeout(function(){endScreen.css("visibility", "visible")},1500);
-    setTimeout(function(){gameOver.text(text1)},2000);
-    setTimeout(function(){endTxt.text(text2)},2000);
+    setTimeout(function(){mario.css("backgroundImage", "url(img/marioGhost.png)")},500);
+    setTimeout(function(){soundDie.play()},500);
+    setTimeout(function(){endScreen.css("visibility", "visible")},3000);
+    setTimeout(function(){gameOver.text(text1)},3500);
+    setTimeout(function(){endTxt.text(text2)},3500);
   }
 
   //polozenie kuli ognia na starcie
@@ -107,6 +105,27 @@ $(function(){
   function startGame(){
 
     world.play();
+    timer(300);
+
+    //funkcja od timera
+    function timer(counter){
+
+      var timeid = setInterval(function() {
+        counter--;
+        if(counter < 0) {
+          clearInterval(timeid);
+        } else {
+          timeCount.text(counter);
+          if (counter == 000) {
+            world.pause();
+            setTimeout(function(){endScreen.css("visibility", "visible")},1000);
+            setTimeout(function(){gameOver.text("GAME OVER")},1500);
+            setTimeout(function(){endTxt.text("Osiagnales wynik "+countMario.text() +" pkt")},1500);
+          }
+        }
+      }, 1000);
+
+    }
 
     gameScreen.on("mousemove",  function(event){
       var marioX = mario.position().left + 25;
@@ -196,10 +215,8 @@ $(function(){
 
     }
 
-
     //celowanie
     gameScreen.on("click",  function(event){
-
 
       //znalezienie evil clouda, aby przekazac jego wspolrzedne do funkcji collision
       var evilCloudClone = $(".evilCharakter");
@@ -338,7 +355,6 @@ $(function(){
         setTimeout(function(){cloudEgg.css("backgroundImage", "url(img/cloudEgg.png)")},480);
       }
     });
-
 
   };
 

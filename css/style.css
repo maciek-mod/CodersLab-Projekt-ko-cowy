@@ -61,7 +61,6 @@
 	font-size: 4em;
 	font-family: "mario", sans-serif;
 	line-height: 2em;
-
 	color: white;
 }
 
@@ -75,6 +74,12 @@
 	color: white;
 	font-family: "mario", sans-serif;
 	margin-bottom: 5%;
+}
+.copy{
+	font-size: 1,5em;
+	color: white;
+	font-family: "mario", sans-serif;
+	margin-top: 5%;
 }
 .endTxt{
 	font-size: 1,5em;
@@ -105,6 +110,26 @@
 	margin-bottom: 5%;
 }
 
+.phoneScreen{
+	height: 100vh;
+	width: 100vw;
+	background: rgb(0, 0, 0);
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	z-index: 300;
+	text-align: center;
+
+}
+
+.phoneScreen p{
+	display: inline-block;
+	font-size: 1em;
+	color: white;
+	font-family: "mario", sans-serif;
+	margin-top: 30%;
+	line-height: 2em;
+}
 
 .fireBoldExplode{
 	position: absolute;
@@ -150,6 +175,18 @@
 	padding-top: 3%;
 	font-weight: 1em;
 }
+.time{
+	position: absolute;
+	left: 90%;
+	display: inline-block;
+	font-family: "mario", sans-serif;
+	color: white;
+	padding-right: 3%;
+	padding-top: 3%;
+	font-weight: 1em;
+	text-align: right;
+
+}
 
 .cloud{
 	position: absolute;
@@ -186,17 +223,14 @@
 }
 .thunder2{
 	position: absolute;
-	top: 21%;
-	left: 63%;
-	background-image: url("../img/błyskawica2.png");
-	height: 600px;
-	width: 88px;
+	top: 28%;
+	left: 52%;
+	background-image: url("../img/błyskawica3.png");
+	height: 353px;
+	width: 244px;
 	background-repeat: no-repeat;
 	background-size: contain;
 	z-index: 0;
-	-ms-transform: rotate(26deg);
-	-webkit-transform: rotate(26deg);
-	transform: rotate(26deg);
 	display: none;
 }
 /*flexbox*/
@@ -234,7 +268,8 @@
 
 .mountain{
 	position: relative;
-	top: -4.4%;
+	/*top: -4.4%;*/
+	top: -40px;
 	left: 61%;
 	background-image: url("../img/mountain.png");
 	height: 115px;
@@ -246,7 +281,7 @@
 
 .bush{
 	position: relative;
-	top: -4.5%;
+	top: -40px;
 	left: -10%;
 	background-image: url("../img/bush.png");
 	height: 53px;
@@ -256,7 +291,7 @@
 }
 .pipe{
 	position: relative;
-	top: -4.2%;
+	top: -37px;
 	left: -52%;
 	background-image: url("../img/pipe.png");
 	height: 70px;
@@ -275,7 +310,7 @@
 	background-size: contain;
 	position: absolute;
 	display: inline-block;
-	top: calc(90.2%  - 53px);
+	top: calc(100%  - 139px);
 	left: calc(50% - 50px);
 	z-index: 10;
 }
@@ -295,60 +330,62 @@
 	background-size: contain;
 	position: absolute;
 	display: inline-block;
-	top: calc(90.2%  - 53px);
+	top: calc(100%  - 139px);
 	left: calc(50% - 50px);
 	z-index: 10;
 }
+@media screen and (min-width: 768px) {
+	.phoneScreen{
+		display: none;
+	}
+}
 
 @media screen and (min-width: 992px) {
+	.phoneScreen{
+		display: none;
+	}
 	.mountain{
-		top: -5.6%;
+
 		left: 68%;
 	}
 	.bush{
-		top: -5.6%;
+
 		left: 5%;
 
 	}
 	.pipe{
-		top: -5.3%;
+
 		left: -25%;
-	}
-	.marioFire ,.mario{
-		top: calc(87.7%  - 53px);
 	}
 	.fireBold{
 		top: 87%;
 
 	}
 	.thunder2{
-		top: 22%;
-		left: 62%;
-		height: 514px;
-		width: 88px;
-		-ms-transform: rotate(40deg);
-		-webkit-transform: rotate(40deg);
-		transform: rotate(40deg);
-		display: none;
+		top: 28%;
+		left: 52%;
+		height: 376px;
+		width: 311px;
+
 	}
 }
 
 @media screen and (min-width: 1400px) {
+	.phoneScreen{
+		display: none;
+	}
 	.mountain{
-		top: -4%;
+
 		left: 66%;
 	}
 	.bush{
-		top: -4.1%;
+
 		left: 8%;
 
 	}
 	.pipe{
-		top: -3.8%;
+
 		left: -15%;
-	}
-	.marioFire ,.mario{
-		top: calc(91.2%  - 53px);
 	}
 	.fireBold{
 		top: 91%;
@@ -361,14 +398,11 @@
 		width: 76px;
 	}
 	.thunder2{
-		top: 23%;
-		left: 61%;
-		height: 732px;
-		width: 183px;
-		-ms-transform: rotate(34deg);
-		-webkit-transform: rotate(34deg);
-		transform: rotate(34deg);
-		display: none;
+		top: 26%;
+		left: 52%;
+		height: 600px;
+		width: 450px;
+
 	}
 }
 
