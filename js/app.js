@@ -10,6 +10,7 @@ $(function(){
   var luigi = gameScreen.find(".luigi");
   var cloudEgg = gameScreen.find(".cloud-1");
   var thunder = gameScreen.find(".thunder");
+  var thunderDead = gameScreen.find(".thunder2");
   var mountain = gameScreen.find(".mountain");
 
   //kula ognia i wymiary jej
@@ -33,6 +34,10 @@ $(function(){
   var screenStart = $(".screenStart");
   var btnStart = $(".btnStart");
   var startText = $(".StartText");
+  var endScreen = gameScreen.find(".screenEnd");
+  var endTxt = gameScreen.find(".endTxt");
+  var gameOver = gameScreen.find(".gameOver");
+
 
 
   //licznik
@@ -71,8 +76,14 @@ $(function(){
   angryluigi.autoPlay=false;
   angryluigi.preLoad=true;
 
+  var soundDie = document.createElement("audio");
+  soundDie.src="sound/mariodie.mp3";
+  soundDie.volume=0.80;
+  soundDie.autoPlay=false;
+  soundDie.preLoad=true;
 
-  //start gry
+
+  // start gry
   btnStart.on("click", function(e){
     screenStart.fadeOut(500);
     setTimeout(function(){startText.show()}, 600);
@@ -80,6 +91,18 @@ $(function(){
     setTimeout(function(){startGame()}, 1000);
 
   });
+
+  function deadMario(text1, text2){
+    world.pause();
+    setTimeout(function(){soundDie.play()},1000);
+    setTimeout(function(){endScreen.css("visibility", "visible")},1500);
+    setTimeout(function(){gameOver.text(text1)},2000);
+    setTimeout(function(){endTxt.text(text2)},2000);
+  }
+
+  //polozenie kuli ognia na starcie
+  var leftFireFirst = fireBold.css("left");
+  var leftFire = parseInt(leftFireFirst) - 65;
 
   function startGame(){
 
@@ -90,14 +113,14 @@ $(function(){
       var mouseX = event.pageX;
       if (marioX<mouseX) {
         fireBold.css({
-          "left": "50%",
-          "top": "85%"
+          "left": leftFireFirst,
+          "top": fireBold.position().top
         });
         mario.removeClass("mirror");
       }else {
         fireBold.css({
-          "left": "44%",
-          "top": "85%"
+          "left": leftFire,
+          "top": fireBold.css("top")
         });
         mario.addClass('mirror');
       }
@@ -197,7 +220,7 @@ $(function(){
         fire.play();
         //powielanie kul ognia do wieloktornego strzalu
         var fireClone = fireBold.clone().insertBefore(mario);
-        fireClone.css("display", "inline-block");
+        fireClone.css("visibility", "visible");
 
         //animacja krecenia sie kuli w locie
         fireClone.animateSprite({
@@ -296,9 +319,17 @@ $(function(){
 
     //event dla chmury, cloud easter egg
     var countCloud = 0;
+
     cloudEgg.on("click", function(event){
+      var gameOverTxt = "GAME OVER";
+      var textThunder = "Synek i na co ci to bylo!!!";
       countCloud++;
-      if (countCloud == 4) {
+      if (countCloud == 7) {
+        setTimeout(function(){thunderSound.play();}, 480);
+        setTimeout(function(){thunderDead.show(80)},480);
+        setTimeout(function(){thunderDead.hide()},650);
+        deadMario(gameOverTxt, textThunder);
+      }else if (countCloud == 4) {
         setTimeout(function(){thunderSound.play();}, 480);
         setTimeout(function(){thunder.slideDown(80)},480);
         setTimeout(function(){thunder.hide()},650);

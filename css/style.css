@@ -4,16 +4,34 @@
 	src: url('../font/emulogic.ttf');
 }
 
-
+* {
+	box-sizing: border-box;
+}
 
 .screen{
 	height: 100vh;
 	width: 100vw;
 	background-color: #6386FB;
+
+}
+
+.screenEnd{
+	height: 100vh;
+	width: 100vw;
+	background: rgb(0, 0, 0);
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	z-index: 100;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	visibility: hidden;
 }
 
 /*ekran startowy*/
-.screenStart{
+.screenStart {
 	height: 100vh;
 	width: 100vw;
 	background: rgb(0, 0, 0);
@@ -58,6 +76,19 @@
 	font-family: "mario", sans-serif;
 	margin-bottom: 5%;
 }
+.endTxt{
+	font-size: 1,5em;
+	color: white;
+	font-family: "mario", sans-serif;
+	margin-bottom: 5%
+
+}
+.gameOver{
+	font-size: 2em;
+	color: white;
+	font-family: "mario", sans-serif;
+	margin-bottom: 5%
+}
 
 .StartText{
 	display: none;
@@ -74,53 +105,7 @@
 	margin-bottom: 5%;
 }
 
-.mario{
-	background-image: url("../img/marioBig.png");
-	height: 100px;
-	width: 50px;
-	background-repeat: no-repeat;
-	background-size: contain;
-	position: absolute;
-	display: inline-block;
-	top: calc(87% - 53px);
-	left: calc(50% - 50px);
-	z-index: 10;
-}
 
-/*klasa do odwracania*/
-.mirror {
-	-moz-transform: scale(-1, 1);
-	-webkit-transform: scale(-1, 1);
-	transform: scale(-1, 1);
-}
-/*klatka strzelania*/
-.marioFire{
-	background-image: url("../img/marioFire.png");
-	height: 100px;
-	width: 50px;
-	background-repeat: no-repeat;
-	background-size: contain;
-	position: absolute;
-	display: inline-block;
-	top: calc(88% - 53px);
-	left: calc(50% - 50px);
-	z-index: 10;
-}
-
-
-.fireBold{
-	position: absolute;
-	top: 85%;
-	left: 50%;
-	background-image: url("../img/fireballAnimation.png");
-	height: 20px;
-	width: 20px;
-	background-repeat: no-repeat;
-	background-size: cover;
-	position: 0;
-	display: none;
-	z-index: 20;
-}
 .fireBoldExplode{
 	position: absolute;
 	background-image: url("../img/fireballExplode.png");
@@ -156,18 +141,6 @@
 	z-index: 20;
 	display: none;
 }
-
-.floor{
-	position: absolute;
-	background-image: url("../img/floorOne.png");
-	background-repeat: repeat-x;
-	height: 40px;
-	width: 100vw;
-	background-size: contain;
-	top: 94%;
-	z-index: 50;
-}
-
 .score{
 	position: absolute;
 	display: inline-block;
@@ -211,10 +184,58 @@
 	z-index: 0;
 	display: none;
 }
-.mountain{
+.thunder2{
 	position: absolute;
-	top: 78%;
-	left: 70%;
+	top: 21%;
+	left: 63%;
+	background-image: url("../img/błyskawica2.png");
+	height: 600px;
+	width: 88px;
+	background-repeat: no-repeat;
+	background-size: contain;
+	z-index: 0;
+	-ms-transform: rotate(26deg);
+	-webkit-transform: rotate(26deg);
+	transform: rotate(26deg);
+	display: none;
+}
+/*flexbox*/
+
+.flex{
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	align-items: flex-end;
+	background-image: url("../img/floorOne.png");
+	background-position: bottom;
+	background-repeat: repeat-x;
+	background-size: 40px 40px;
+
+}
+
+
+
+.fireBold{
+	position: absolute;
+	top: 90%;
+	left: 50%;
+	background-image: url("../img/fireballAnimation.png");
+	height: 20px;
+	width: 20px;
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: 0;
+	visibility: hidden;
+	z-index: 200;
+}
+
+
+
+
+.mountain{
+	position: relative;
+	top: -4.4%;
+	left: 61%;
 	background-image: url("../img/mountain.png");
 	height: 115px;
 	width: 261px;
@@ -222,20 +243,21 @@
 	background-size: contain;
 
 }
+
 .bush{
-	position: absolute;
-	top: 87%;
-	left: 18%;
+	position: relative;
+	top: -4.5%;
+	left: -10%;
 	background-image: url("../img/bush.png");
-	height: 68px;
+	height: 53px;
 	width: 185px;
 	background-repeat: no-repeat;
-	background-size: contain;
+	background-size: cover;
 }
 .pipe{
-	position: absolute;
-	top: 84%;
-	left: 6%;
+	position: relative;
+	top: -4.2%;
+	left: -52%;
 	background-image: url("../img/pipe.png");
 	height: 70px;
 	width: 85px;
@@ -244,6 +266,113 @@
 	z-index: 20;
 
 }
+
+.mario{
+	background-image: url("../img/marioBig.png");
+	height: 100px;
+	width: 50px;
+	background-repeat: no-repeat;
+	background-size: contain;
+	position: absolute;
+	display: inline-block;
+	top: calc(90.2%  - 53px);
+	left: calc(50% - 50px);
+	z-index: 10;
+}
+
+/*klasa do odwracania*/
+.mirror {
+	-moz-transform: scale(-1, 1);
+	-webkit-transform: scale(-1, 1);
+	transform: scale(-1, 1);
+}
+/*klatka strzelania*/
+.marioFire{
+	background-image: url("../img/marioFire.png");
+	height: 100px;
+	width: 50px;
+	background-repeat: no-repeat;
+	background-size: contain;
+	position: absolute;
+	display: inline-block;
+	top: calc(90.2%  - 53px);
+	left: calc(50% - 50px);
+	z-index: 10;
+}
+
+@media screen and (min-width: 992px) {
+	.mountain{
+		top: -5.6%;
+		left: 68%;
+	}
+	.bush{
+		top: -5.6%;
+		left: 5%;
+
+	}
+	.pipe{
+		top: -5.3%;
+		left: -25%;
+	}
+	.marioFire ,.mario{
+		top: calc(87.7%  - 53px);
+	}
+	.fireBold{
+		top: 87%;
+
+	}
+	.thunder2{
+		top: 22%;
+		left: 62%;
+		height: 514px;
+		width: 88px;
+		-ms-transform: rotate(40deg);
+		-webkit-transform: rotate(40deg);
+		transform: rotate(40deg);
+		display: none;
+	}
+}
+
+@media screen and (min-width: 1400px) {
+	.mountain{
+		top: -4%;
+		left: 66%;
+	}
+	.bush{
+		top: -4.1%;
+		left: 8%;
+
+	}
+	.pipe{
+		top: -3.8%;
+		left: -15%;
+	}
+	.marioFire ,.mario{
+		top: calc(91.2%  - 53px);
+	}
+	.fireBold{
+		top: 91%;
+
+	}
+	.thunder{
+		top: 26%;
+		left: 74%;
+		height: 600px;
+		width: 76px;
+	}
+	.thunder2{
+		top: 23%;
+		left: 61%;
+		height: 732px;
+		width: 183px;
+		-ms-transform: rotate(34deg);
+		-webkit-transform: rotate(34deg);
+		transform: rotate(34deg);
+		display: none;
+	}
+}
+
+
 .pipeTxt{
 	color: white;
 	font-size: 1.5em;
@@ -278,6 +407,8 @@
 	left: -140%;
 
 }
+
+
 
 
 /*HOME podstrona*/
@@ -331,13 +462,13 @@
 	0%{
 		background-position: 0 0;
 	}
-  100%{
-    background-position: 195% 0;
-  }
+	100%{
+		background-position: 195% 0;
+	}
 
 }
 
-.mario{
+.mario2{
 	background-image: url("../img/marioSmall.png");
 	width: 10%;
 	height: 0;
@@ -352,6 +483,19 @@
 }
 
 
+.htmlCss{
+	font-size: 4em;
+	color: rgba(255, 255, 255, 0.8);
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 400;
+	position: fixed;
+	width: 100vw;
+	display: inline-block;
+	text-align: center;
+	line-height: 4em
+
+}
+
 .desk{
 	background-image: url("../img/desk.png");
 	width: 25%;
@@ -364,4 +508,56 @@
 	top: 50%;
 	left: 75%;
 	z-index: 10;
+}
+.scrollIcon{
+	background-image: url("../img/scroll.png");
+	width: 10%;
+	height: 0;
+	padding-bottom: 10%;
+	background-size: contain;
+	background-repeat: no-repeat;
+	display: inline-block;
+	position: fixed;
+	top: 45%;
+	left: 45%;
+	z-index: 10;
+	-webkit-animation: pulse 1s linear infinite;
+	animation: pulse 1s linear infinite;
+
+}
+
+/*pulsowanie scrola*/
+@-webkit-keyframes pulse {
+	0% {
+		-webkit-transform: scale(1, 1);
+	}
+	50% {
+		-webkit-transform: scale(0.9, 0.9);
+	}
+	100% {
+		-webkit-transform: scale(1, 1);
+	};
+}
+
+@keyframes pulse {
+	0% {
+		transform: scale(1, 1);
+	}
+	50% {
+		transform: scale(0.9, 0.9);
+	}
+	100% {
+		transform: scale(1, 1);
+	};
+}
+
+.animatTxt{
+	position: fixed;
+	z-index: 20;
+	top: 49%;
+	left: 46%;
+	font-size: .8em;
+	color: white;
+	font-family: "mario", sans-serif;
+	display: none;
 }
