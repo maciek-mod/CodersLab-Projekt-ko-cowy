@@ -1,4 +1,4 @@
-/*Font mario*/
+﻿/*Font mario*/
 @font-face {
 	font-family: 'mario';
 	src: url('../font/emulogic.ttf');
@@ -213,7 +213,7 @@
 	position: absolute;
 	top: 25%;
 	left: 77%;
-	background-image: url("../img/błyskawica2.png");
+	background-image: url("../img/błyskawica.png");
 	height: 461px;
 	width: 68px;
 	background-repeat: no-repeat;
@@ -247,8 +247,6 @@
 
 }
 
-
-
 .fireBold{
 	position: absolute;
 	top: 90%;
@@ -262,8 +260,6 @@
 	visibility: hidden;
 	z-index: 200;
 }
-
-
 
 
 .mountain{
@@ -334,16 +330,128 @@
 	left: calc(50% - 50px);
 	z-index: 10;
 }
-@media screen and (min-width: 768px) {
-	.phoneScreen{
+.marioPhone{
+	display: none;
+}
+@media screen and (max-width: 768px)  {
+	.score{
+		position: absolute;
+		display: inline-block;
+		font-family: "mario", sans-serif;
+		color: white;
+		padding-left: 3%;
+		padding-top: 3%;
+		font-weight: 1em;
+	}
+	.time{
+		left: 78%;
+	}
+
+	.evilCharakter{
+		width: 10%;
+		height: 10%;
+		display: none;
+
+	}
+	.cloudHit{
+		width: 10%;
+		height: 10%;
 		display: none;
 	}
+
+	.cloud{
+		position: absolute;
+		top: 20%;
+		left: 7%;
+		background-image: url("../img/cloud2.png");
+		width: 13%;
+		height: 9%;
+		background-repeat: no-repeat;
+		background-size: contain;
+	}
+	.cloud-1{
+		position: absolute;
+		top: 20%;
+		left: 61%;
+		background-image: url("../img/cloud-1.png");
+		height: 9%;
+		width: 28%;
+		background-repeat: no-repeat;
+		background-size: contain;
+		z-index: 10;
+
+	}
+	.flex{
+		width: 100vw;
+		height: 100vh;
+		display: flex;
+		align-items: flex-end;
+		background-image: url("../img/floorOne.png");
+		background-position: bottom;
+		background-repeat: repeat-x;
+		background-size: 30px 30px;
+
+	}
+
+	.fireBold{
+		position: absolute;
+		top: 90%;
+		left: 50%;
+		background-image: url("../img/fireballAnimation.png");
+		height: 20px;
+		width: 20px;
+		background-repeat: no-repeat;
+		background-size: cover;
+		position: 0;
+		visibility: hidden;
+		z-index: 200;
+	}
+
+
+	.mountain{
+		top: -30px;
+		left: 61%;
+		width: 30%;
+		padding-top: 13%;
+		height: 0;
+	}
+
+	.bush{
+		top: -30px;
+		left: -10%;
+		width: 30%;
+		padding-top: 8%;
+		height: 0;
+	}
+	.pipe{
+		top: -30px;
+		left: -52%;
+		width: 85px;
+		padding-top: 8%;
+		height: 0;
+	}
+
+	.marioPhone{
+			position: relative;
+			top: -30px;
+			width: 7.5%;
+			padding-top: 14.7%;
+			height: 0;
+			left: 45%;
+			background-image: url("../img/marioBig.png");
+			background-repeat: no-repeat;
+			background-size: contain;
+			display: inline-block;
+			z-index: 10;
+	}
+	.mario{
+		display: none;
+	}
+
 }
 
 @media screen and (min-width: 992px) {
-	.phoneScreen{
-		display: none;
-	}
+
 	.mountain{
 
 		left: 68%;
@@ -371,9 +479,7 @@
 }
 
 @media screen and (min-width: 1400px) {
-	.phoneScreen{
-		display: none;
-	}
+
 	.mountain{
 
 		left: 66%;

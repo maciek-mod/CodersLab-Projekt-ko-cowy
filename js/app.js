@@ -12,6 +12,7 @@ $(function(){
   var thunderDead = gameScreen.find(".thunder2");
   var mountain = gameScreen.find(".mountain");
   var timeCount = gameScreen.find(".time_count");
+  var marioPhone = gameScreen.find(".marioPhone");
 
   //kula ognia i wymiary jej
   var fireBold = gameScreen.find(".fireBold");
@@ -21,6 +22,8 @@ $(function(){
   };
   var fireExplode = $(".fireBoldExplode");
 
+  //zmienna dla ograniczenia ruchu chmurtki, ze wzgledu na szerokosc ekranu
+  var bodyWidth = $(window).width();
 
   //chmurka i wymiary jej
   var evilCloud = gameScreen.find(".evilCharakter");
@@ -81,13 +84,13 @@ $(function(){
   soundDie.preLoad=true;
 
   // start gry
-  btnStart.on("click", function(e){
-    screenStart.fadeOut(500);
-    setTimeout(function(){startText.show()}, 600);
-    setTimeout(function(){startText.hide()}, 950);
-    setTimeout(function(){startGame()}, 1000);
-
-  });
+  // btnStart.on("click", function(e){
+  //   screenStart.fadeOut(500);
+  //   setTimeout(function(){startText.show()}, 600);
+  //   setTimeout(function(){startText.hide()}, 950);
+  //   setTimeout(function(){startGame()}, 1000);
+  //
+  // });
 
   function deadMario(text1, text2){
     world.pause();
@@ -101,11 +104,11 @@ $(function(){
   //polozenie kuli ognia na starcie
   var leftFireFirst = fireBold.css("left");
   var leftFire = parseInt(leftFireFirst) - 65;
-
+  startGame();
   function startGame(){
 
-    world.play();
-    timer(300);
+    // world.play();
+    // timer(300);
 
     //funkcja od timera
     function timer(counter){
@@ -128,20 +131,22 @@ $(function(){
     }
 
     gameScreen.on("mousemove",  function(event){
-      var marioX = mario.position().left + 25;
       var mouseX = event.pageX;
-      if (marioX<mouseX) {
+      if ((bodyWidth/2)<mouseX) {
         fireBold.css({
           "left": leftFireFirst,
           "top": fireBold.position().top
         });
         mario.removeClass("mirror");
+        marioPhone.removeClass("mirror");
       }else {
         fireBold.css({
           "left": leftFire,
           "top": fireBold.css("top")
         });
         mario.addClass('mirror');
+        marioPhone.addClass("mirror");
+
       }
 
     });
@@ -161,7 +166,6 @@ $(function(){
           explode.play();
           animateHit(posExplosion.left, posExplosion.top);
           hitEvilCloud.remove();
-
 
           //uruchomienie licnzika jak zaistniała kolizja 2 obiektow
           if (collision) {
@@ -279,9 +283,9 @@ $(function(){
 
     });
 
-
     //poruszanie sie bosa
     function animateCloudEvil() {
+
 
       //losowanie x y dla pojawiającej sie Evil Cloud
       var leftFirst  = Math.floor((Math.random() * (bodyWidth - 50)) + 1);
