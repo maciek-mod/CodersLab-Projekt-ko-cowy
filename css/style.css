@@ -1,4 +1,4 @@
-﻿/*Font mario*/
+/*Font mario*/
 @font-face {
 	font-family: 'mario';
 	src: url('../font/emulogic.ttf');
@@ -23,6 +23,7 @@
 	left: 0px;
 	top: 0px;
 	z-index: 100;
+	text-align: center;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -82,7 +83,7 @@
 	margin-top: 5%;
 }
 .endTxt{
-	font-size: 1,5em;
+	font-size: 1em;
 	color: white;
 	font-family: "mario", sans-serif;
 	margin-bottom: 5%
@@ -298,6 +299,42 @@
 
 }
 
+.pipeTxt{
+	color: white;
+	font-size: 1.5em;
+	font-family: "mario", sans-serif;
+	position: relative;
+	top: -48%;
+	left: -30%;
+	display: none;
+}
+.luigi{
+	background-image: url("../img/luigi.png");
+	height: 62px;
+	width: 50px;
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: relative;
+	display: inline-block;
+	top: -88%;
+	left: 20%;
+	display: none;
+}
+
+.lugiTxt{
+	color: white;
+	font-size: 1em;
+	width: 200px;
+	text-align: center;
+	line-height: 1.3em;
+	font-family: "mario", sans-serif;
+	position: relative;
+	top: -80%;
+	left: -140%;
+
+}
+
+
 .mario{
 	background-image: url("../img/marioBig.png");
 	height: 100px;
@@ -356,55 +393,33 @@
 	.cloudHit{
 		width: 10%;
 		height: 10%;
-		display: none;
+		/*display: none;*/
 	}
 
 	.cloud{
-		position: absolute;
 		top: 20%;
 		left: 7%;
-		background-image: url("../img/cloud2.png");
 		width: 13%;
 		height: 9%;
-		background-repeat: no-repeat;
-		background-size: contain;
 	}
 	.cloud-1{
-		position: absolute;
 		top: 20%;
 		left: 61%;
-		background-image: url("../img/cloud-1.png");
 		height: 9%;
 		width: 28%;
-		background-repeat: no-repeat;
-		background-size: contain;
-		z-index: 10;
 
 	}
 	.flex{
-		width: 100vw;
-		height: 100vh;
-		display: flex;
-		align-items: flex-end;
-		background-image: url("../img/floorOne.png");
-		background-position: bottom;
-		background-repeat: repeat-x;
 		background-size: 30px 30px;
 
 	}
 
 	.fireBold{
-		position: absolute;
-		top: 90%;
-		left: 50%;
-		background-image: url("../img/fireballAnimation.png");
-		height: 20px;
-		width: 20px;
-		background-repeat: no-repeat;
-		background-size: cover;
-		position: 0;
+		top: 89%;
+		left: 53%;
+		height: 15px;
+		width: 15px;
 		visibility: hidden;
-		z-index: 200;
 	}
 
 
@@ -432,20 +447,53 @@
 	}
 
 	.marioPhone{
-			position: relative;
-			top: -30px;
-			width: 7.5%;
-			padding-top: 14.7%;
-			height: 0;
-			left: 45%;
-			background-image: url("../img/marioBig.png");
-			background-repeat: no-repeat;
-			background-size: contain;
-			display: inline-block;
-			z-index: 10;
+		position: relative;
+		top: -30px;
+		width: 7.5%;
+		padding-top: 14.7%;
+		height: 0;
+		left: 45%;
+		background-image: url("../img/marioBig.png");
+		background-repeat: no-repeat;
+		background-size: contain;
+		display: inline-block;
+		z-index: 10;
 	}
 	.mario{
 		display: none;
+	}
+	.thunder2{
+		top: 26%;
+		left: 37%;
+		height: 301px;
+		width: 244px;
+	}
+
+	.pipeTxt{
+		visibility: hidden;
+	}
+	.luigi{
+		visibility: hidden;
+	}
+	.lugiTxt{
+		visibility: hidden;
+	}
+	.btnStart{
+		font-size: .9em;
+	}
+	.startTitle{
+		font-size: 1.5em;
+	}
+
+	.TextStart{
+		font-size: .9em;
+	}
+	.StartText p {
+		font-size: 2em;
+	}
+	.copy{
+		text-align: center;
+		font-size: .8em;
 	}
 
 }
@@ -512,41 +560,6 @@
 	}
 }
 
-
-.pipeTxt{
-	color: white;
-	font-size: 1.5em;
-	font-family: "mario", sans-serif;
-	position: relative;
-	top: -48%;
-	left: -30%;
-	display: none;
-}
-.luigi{
-	background-image: url("../img/luigi.png");
-	height: 62px;
-	width: 50px;
-	background-repeat: no-repeat;
-	background-size: cover;
-	position: relative;
-	display: inline-block;
-	top: -88%;
-	left: 20%;
-	display: none;
-}
-
-.lugiTxt{
-	color: white;
-	font-size: 1em;
-	width: 200px;
-	text-align: center;
-	line-height: 1.3em;
-	font-family: "mario", sans-serif;
-	position: relative;
-	top: -80%;
-	left: -140%;
-
-}
 
 
 

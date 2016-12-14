@@ -84,17 +84,18 @@ $(function(){
   soundDie.preLoad=true;
 
   // start gry
-  // btnStart.on("click", function(e){
-  //   screenStart.fadeOut(500);
-  //   setTimeout(function(){startText.show()}, 600);
-  //   setTimeout(function(){startText.hide()}, 950);
-  //   setTimeout(function(){startGame()}, 1000);
-  //
-  // });
+  btnStart.on("click", function(e){
+    screenStart.fadeOut(500);
+    setTimeout(function(){startText.show()}, 600);
+    setTimeout(function(){startText.hide()}, 950);
+    setTimeout(function(){startGame()}, 1000);
+
+  });
 
   function deadMario(text1, text2){
     world.pause();
     setTimeout(function(){mario.css("backgroundImage", "url(img/marioGhost.png)")},500);
+    setTimeout(function(){marioPhone.css("backgroundImage", "url(img/marioGhost.png)")},500);
     setTimeout(function(){soundDie.play()},500);
     setTimeout(function(){endScreen.css("visibility", "visible")},3000);
     setTimeout(function(){gameOver.text(text1)},3500);
@@ -104,11 +105,11 @@ $(function(){
   //polozenie kuli ognia na starcie
   var leftFireFirst = fireBold.css("left");
   var leftFire = parseInt(leftFireFirst) - 65;
-  startGame();
+  
   function startGame(){
 
-    // world.play();
-    // timer(300);
+    world.play();
+    timer(300);
 
     //funkcja od timera
     function timer(counter){
@@ -236,6 +237,7 @@ $(function(){
 
         //zmiana pozycji do strzału
         mario.addClass("marioFire");
+
         setTimeout(function(){mario.removeClass("marioFire")}, 100);
         //dzwiek strzalu
         fire.play();
@@ -299,10 +301,8 @@ $(function(){
         "top": topFirst
       });
       evilCloudClone.css("display", "inline-block");
-      setTimeout
 
-      //zmienna dla ograniczenia ruchu chmurtki, ze wzgledu na szerokosc ekranu
-      var bodyWidth = $(window).width();
+
 
       //losowanie x y i speed
       var left  = Math.floor((Math.random() * (bodyWidth - 50)) + 1);
