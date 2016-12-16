@@ -14,6 +14,7 @@ $(function(){
   var timeCount = gameScreen.find(".time_count");
   var marioPhone = gameScreen.find(".marioPhone");
 
+
   //kula ognia i wymiary jej
   var fireBold = gameScreen.find(".fireBold");
   var fireBoldSize ={
@@ -102,16 +103,17 @@ $(function(){
     setTimeout(function(){endTxt.text(text2)},3500);
   }
 
+
   //polozenie kuli ognia na starcie
   var leftFireFirst = fireBold.css("left");
   var leftFire = parseInt(leftFireFirst) - 65;
-  
+  // startGame();
   function startGame(){
 
     world.play();
     timer(300);
 
-    //funkcja od timera
+    //licznik
     function timer(counter){
 
       var timeid = setInterval(function() {
@@ -131,22 +133,25 @@ $(function(){
 
     }
 
+    //obracanie mario i przerzucanie fireballa na druga reke w wersji od tableta w gore
     gameScreen.on("mousemove",  function(event){
       var mouseX = event.pageX;
-      if ((bodyWidth/2)<mouseX) {
-        fireBold.css({
-          "left": leftFireFirst,
-          "top": fireBold.position().top
-        });
-        mario.removeClass("mirror");
-        marioPhone.removeClass("mirror");
-      }else {
-        fireBold.css({
-          "left": leftFire,
-          "top": fireBold.css("top")
-        });
-        mario.addClass('mirror');
-        marioPhone.addClass("mirror");
+      if (bodyWidth>768) {
+        if ((bodyWidth/2)<mouseX) {
+          fireBold.css({
+            "left": leftFireFirst,
+            "top": fireBold.position().top
+          });
+          mario.removeClass("mirror");
+          marioPhone.removeClass("mirror");
+        }else {
+          fireBold.css({
+            "left": leftFire,
+            "top": fireBold.css("top")
+          });
+          mario.addClass('mirror');
+          marioPhone.addClass("mirror");
+        }
 
       }
 
@@ -168,7 +173,7 @@ $(function(){
           animateHit(posExplosion.left, posExplosion.top);
           hitEvilCloud.remove();
 
-          //uruchomienie licnzika jak zaistniała kolizja 2 obiektow
+          //uruchomienie licnzika pkt jak zaistniała kolizja 2 obiektow
           if (collision) {
             counter();
           }
@@ -263,7 +268,7 @@ $(function(){
           var speedBall = 550;
         }
 
-        //animacja lotu klonowanych fireballi, if odnosnie kolizji,  ma nstepowac na wysokosci wystepowania evil Cloud (unikniecie buga)
+        //animacja lotu klonowanych fireballi, if odnosnie kolizji, ma nstepowac na wysokosci wystepowania evil Cloud (unikniecie buga)
         if (yClick < 300) {
           fireClone.animate({ top: top, left: left }, {
             duration: speedBall,

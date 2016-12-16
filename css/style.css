@@ -111,27 +111,6 @@
 	margin-bottom: 5%;
 }
 
-.phoneScreen{
-	height: 100vh;
-	width: 100vw;
-	background: rgb(0, 0, 0);
-	position: absolute;
-	left: 0px;
-	top: 0px;
-	z-index: 300;
-	text-align: center;
-
-}
-
-.phoneScreen p{
-	display: inline-block;
-	font-size: 1em;
-	color: white;
-	font-family: "mario", sans-serif;
-	margin-top: 30%;
-	line-height: 2em;
-}
-
 .fireBoldExplode{
 	position: absolute;
 	background-image: url("../img/fireballExplode.png");
@@ -265,7 +244,6 @@
 
 .mountain{
 	position: relative;
-	/*top: -4.4%;*/
 	top: -40px;
 	left: 61%;
 	background-image: url("../img/mountain.png");
@@ -370,88 +348,53 @@
 .marioPhone{
 	display: none;
 }
-@media screen and (max-width: 768px)  {
+
+@media screen and (max-width: 480px)  {
+
 	.score{
-		position: absolute;
-		display: inline-block;
-		font-family: "mario", sans-serif;
 		color: white;
 		padding-left: 3%;
 		padding-top: 3%;
-		font-weight: 1em;
+		font-size: .9em;
 	}
 	.time{
 		left: 78%;
+		font-size: .9em;
 	}
 
 	.evilCharakter{
-		width: 10%;
-		height: 10%;
-		display: none;
+		width: 30px;
+		height: 46px;
 
 	}
 	.cloudHit{
-		width: 10%;
-		height: 10%;
-		/*display: none;*/
+		width: 30px;
+		height: 46px;
+		display: none;
 	}
 
 	.cloud{
 		top: 20%;
 		left: 7%;
-		width: 13%;
-		height: 9%;
+		width: 50px;
+		height: 38px;
 	}
 	.cloud-1{
 		top: 20%;
-		left: 61%;
-		height: 9%;
-		width: 28%;
+		left: 59%;
+		height: 38px;
+		width: 101px;
 
 	}
 	.flex{
-		background-size: 30px 30px;
+		background-size: 25px 25px;
 
 	}
-
-	.fireBold{
-		top: 89%;
-		left: 53%;
-		height: 15px;
-		width: 15px;
-		visibility: hidden;
-	}
-
-
-	.mountain{
-		top: -30px;
-		left: 61%;
-		width: 30%;
-		padding-top: 13%;
-		height: 0;
-	}
-
-	.bush{
-		top: -30px;
-		left: -10%;
-		width: 30%;
-		padding-top: 8%;
-		height: 0;
-	}
-	.pipe{
-		top: -30px;
-		left: -52%;
-		width: 85px;
-		padding-top: 8%;
-		height: 0;
-	}
-
 	.marioPhone{
 		position: relative;
-		top: -30px;
-		width: 7.5%;
-		padding-top: 14.7%;
-		height: 0;
+		top: -25px;
+		width: 33px;
+		height: 64px;
 		left: 45%;
 		background-image: url("../img/marioBig.png");
 		background-repeat: no-repeat;
@@ -459,25 +402,73 @@
 		display: inline-block;
 		z-index: 10;
 	}
+
+	.fireBold{
+		top: 90%;
+		left: 56%;
+		height: 15px;
+		width: 15px;
+	}
+	.mountain{
+		top: -25px;
+		left: 43%;
+		width: 141px;
+		height: 62px;
+	}
+
+	.bush{
+		display: none;
+	}
+	.pipe{
+		top: -25px;
+		left: -41%;
+		width: 50px;
+		height: 39px;
+	}
 	.mario{
 		display: none;
 	}
-	.thunder2{
-		top: 26%;
-		left: 37%;
-		height: 301px;
-		width: 244px;
-	}
 
 	.pipeTxt{
-		visibility: hidden;
+		font-size: .9em;
+		top: -48%;
+		left: -30%;
 	}
 	.luigi{
-		visibility: hidden;
+		height: 34px;
+		width: 33px;
+		top: -88%;
+		left: 17%;
 	}
+
 	.lugiTxt{
-		visibility: hidden;
+		font-size: .7em;
+		width: 100px;
+		line-height: 1.3em;
+		top: -137%;
+		left: -100%;
+
 	}
+
+	.thunder{
+		top: 26%;
+		left: 72%;
+		height: 354px;
+		width: 46px;
+
+	}
+	.thunder2{
+		top: 30%;
+		left: 33%;
+		height: 235px;
+		width: 169px;
+		-ms-transform: rotate(-20deg);
+		-webkit-transform: rotate(-20deg);
+		transform: rotate(-20deg);
+
+	}
+
+
 	.btnStart{
 		font-size: .9em;
 	}
@@ -487,6 +478,7 @@
 
 	.TextStart{
 		font-size: .9em;
+
 	}
 	.StartText p {
 		font-size: 2em;
@@ -495,8 +487,31 @@
 		text-align: center;
 		font-size: .8em;
 	}
+	.screenStart{
+		text-align: center;
+	}
 
 }
+
+@media screen and (min-width: 400px) and (max-width: 480px){
+	.thunder2{
+		left: 41%;
+	}
+	.thunder{
+		left: 66%;
+	}
+	.pipe{
+		left: -28%;
+	}
+	.fireBold{
+		top: 88%;
+		left: 54%;
+	}
+	.mountain{
+		left: 55%;
+	}
+}
+
 
 @media screen and (min-width: 992px) {
 
@@ -558,159 +573,4 @@
 		width: 450px;
 
 	}
-}
-
-
-
-
-
-/*HOME podstrona*/
-
-.scens{
-	width: 100vw;
-	height: 30000px;
-}
-.htmlScen{
-	width: 100%;
-	height: 15000px;
-	background-color: rgb(78,205,196);
-}
-.fixed{
-	height: 1px;
-	width: 1px;
-	position: fixed;
-	border: 1px solid red;
-}
-.bitman{
-	background-image: url("../img/8bitMen_scen1.png");
-	width: 11%;
-	height: 0;
-	padding-bottom: 20.2%;
-	background-size: cover;
-	background-repeat: no-repeat;
-	display: none;
-	position: fixed;
-	top: 46%;
-	z-index: 10;
-
-}
-.bitmanKey{
-	background-image: url("../img/8bitMen_key.png");
-	width: 11%;
-	height: 0;
-	padding-bottom: 20.1%;
-	animation:key 400ms steps(2) infinite;
-	padding-bottom: 20.1%;
-	background-size: cover;
-	background-repeat: no-repeat;
-	display: none;
-	position: fixed;
-	top: 46%;
-	z-index: 10;
-
-}
-
-@keyframes key {
-
-	0%{
-		background-position: 0 0;
-	}
-	100%{
-		background-position: 195% 0;
-	}
-
-}
-
-.mario2{
-	background-image: url("../img/marioSmall.png");
-	width: 10%;
-	height: 0;
-	padding-bottom: 9.1%;
-	background-size: cover;
-	background-repeat: no-repeat;
-	display: none;
-	position: fixed;
-	top: 43%;
-	z-index: 0;
-	left: 85%;
-}
-
-
-.htmlCss{
-	font-size: 4em;
-	color: rgba(255, 255, 255, 0.8);
-	font-family: 'Montserrat', sans-serif;
-	font-weight: 400;
-	position: fixed;
-	width: 100vw;
-	display: inline-block;
-	text-align: center;
-	line-height: 4em
-
-}
-
-.desk{
-	background-image: url("../img/desk.png");
-	width: 25%;
-	height: 0%;
-	padding-bottom: 21%;
-	background-size: cover;
-	background-repeat: no-repeat;
-	display: none;
-	position: fixed;
-	top: 50%;
-	left: 75%;
-	z-index: 10;
-}
-.scrollIcon{
-	background-image: url("../img/scroll.png");
-	width: 10%;
-	height: 0;
-	padding-bottom: 10%;
-	background-size: contain;
-	background-repeat: no-repeat;
-	display: inline-block;
-	position: fixed;
-	top: 45%;
-	left: 45%;
-	z-index: 10;
-	-webkit-animation: pulse 1s linear infinite;
-	animation: pulse 1s linear infinite;
-
-}
-
-/*pulsowanie scrola*/
-@-webkit-keyframes pulse {
-	0% {
-		-webkit-transform: scale(1, 1);
-	}
-	50% {
-		-webkit-transform: scale(0.9, 0.9);
-	}
-	100% {
-		-webkit-transform: scale(1, 1);
-	};
-}
-
-@keyframes pulse {
-	0% {
-		transform: scale(1, 1);
-	}
-	50% {
-		transform: scale(0.9, 0.9);
-	}
-	100% {
-		transform: scale(1, 1);
-	};
-}
-
-.animatTxt{
-	position: fixed;
-	z-index: 20;
-	top: 49%;
-	left: 46%;
-	font-size: .8em;
-	color: white;
-	font-family: "mario", sans-serif;
-	display: none;
 }
