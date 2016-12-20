@@ -46,7 +46,7 @@
 	flex-direction: column;
 }
 
-.btnStart{
+.btnStart ,.retry{
 	width: 130px;
 	text-align: center;
 	height: 40px;
@@ -56,6 +56,7 @@
 	font-size: 1em;
 	line-height: 40px;
 	border: none;
+	cursor: pointer;
 }
 .startTitle{
 	text-align: center;
@@ -84,6 +85,7 @@
 }
 .endTxt{
 	font-size: 1em;
+	line-height: 1.5em;
 	color: white;
 	font-family: "mario", sans-serif;
 	margin-bottom: 5%
@@ -230,7 +232,7 @@
 .fireBold{
 	position: absolute;
 	top: 90%;
-	left: 50%;
+	left: calc(50% + 21px);
 	background-image: url("../img/fireballAnimation.png");
 	height: 20px;
 	width: 20px;
@@ -267,7 +269,7 @@
 .pipe{
 	position: relative;
 	top: -37px;
-	left: -52%;
+	left: -28%;
 	background-image: url("../img/pipe.png");
 	height: 70px;
 	width: 85px;
@@ -322,8 +324,34 @@
 	position: absolute;
 	display: inline-block;
 	top: calc(100%  - 139px);
-	left: calc(50% - 50px);
+	left: calc(50% - 25px);
 	z-index: 10;
+}
+
+/*obracanie telefonu*/
+.turnPhone{
+	height: 100vh;
+	width: 100vw;
+	background-color: black;
+	position: absolute;
+	z-index: 110;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	visibility: hidden;
+}
+
+.tunIcon{
+	background-image: url("../img/turn.png");
+	width: 167px;
+	height: 100px;
+}
+@media screen and (max-width: 768px) and (orientation: landscape) {
+
+	.turnPhone{
+		visibility: visible;
+	}
+
 }
 
 /*klasa do odwracania*/
@@ -342,13 +370,21 @@
 	position: absolute;
 	display: inline-block;
 	top: calc(100%  - 139px);
-	left: calc(50% - 50px);
+	left: calc(50% - 25px);
 	z-index: 10;
 }
 .marioPhone{
 	display: none;
+	width: 33px;
+	height: 64px;
+	background-image: url("../img/marioBig.png");
+	background-repeat: no-repeat;
+	background-size: contain;
+	z-index: 10;
+
 }
 
+/*do 480px*/
 @media screen and (max-width: 480px)  {
 
 	.score{
@@ -370,7 +406,6 @@
 	.cloudHit{
 		width: 30px;
 		height: 46px;
-		display: none;
 	}
 
 	.cloud{
@@ -393,19 +428,14 @@
 	.marioPhone{
 		position: relative;
 		top: -25px;
-		width: 33px;
-		height: 64px;
 		left: 45%;
-		background-image: url("../img/marioBig.png");
-		background-repeat: no-repeat;
-		background-size: contain;
 		display: inline-block;
 		z-index: 10;
 	}
 
 	.fireBold{
 		top: 90%;
-		left: 56%;
+		left: calc(50% + 21px);
 		height: 15px;
 		width: 15px;
 	}
@@ -470,6 +500,7 @@
 
 
 	.btnStart{
+
 		font-size: .9em;
 	}
 	.startTitle{
@@ -505,13 +536,182 @@
 	}
 	.fireBold{
 		top: 88%;
-		left: 54%;
+	}
+	.mountain{
+		left: 55%;
+	}
+}
+/*do 768px*/
+@media screen and (min-width: 421px) and (max-width: 768px)  {
+
+	.score{
+		color: white;
+		padding-left: 3%;
+		padding-top: 3%;
+		font-size: 1em;
+	}
+	.time{
+		left: 83%;
+		font-size: 1em;
+	}
+
+	.evilCharakter{
+		width: 40px;
+		height: 60px;
+
+	}
+	.cloudHit{
+		width: 40px;
+		height: 60px;
+	}
+
+	.cloud{
+		top: 20%;
+		left: 7%;
+		width: 65px;
+		height: 60px;
+	}
+	.cloud-1{
+		top: 20%;
+		left: 59%;
+		height: 53px;
+		width: 140px;
+
+	}
+	.flex{
+		background-size: 30px 30px;
+
+	}
+	.marioPhone{
+		position: relative;
+		top: -30px;
+		width: 43px;
+		height: 82px;
+		left: calc(50% - 21px);
+		display: inline-block;
+	}
+
+	.fireBold{
+		top: 90%;
+		left: calc(50% + 28px);
+		height: 20px;
+		width: 20px;
+	}
+	.mountain{
+		top: -30px;
+		left: 44%;
+		width: 184px;
+		height: 81px;
+	}
+
+	.bush{
+		display: none;
+	}
+	.pipe{
+		top: -30px;
+		left: -36%;
+		width: 69px;
+		height: 54px;
+	}
+	.mario{
+		display: none;
+	}
+
+	.pipeTxt{
+		font-size: 1em;
+		top: -45%;
+		left: -22%;
+
+	}
+	.luigi{
+		height: 41px;
+		width: 40px;
+		top: -76%;
+		left: 21%;
+	}
+
+	.lugiTxt{
+		font-size: .9em;
+		width: 150px;
+		line-height: 1.3em;
+		top: -146%;
+		left: -126%;
+
+	}
+
+	.thunder{
+		top: 26%;
+		left: 71%;
+		height: 413px;
+		width: 57px;
+
+	}
+	.thunder2{
+		top: 30%;
+		left: 37%;
+		height: 317px;
+		width: 229px;
+		-ms-transform: rotate(-20deg);
+		-webkit-transform: rotate(-20deg);
+		transform: rotate(-20deg);
+	}
+
+	.btnStart{
+		font-size: .9em;
+	}
+	.startTitle{
+		font-size: 1.5em;
+	}
+
+	.TextStart{
+		font-size: .9em;
+
+	}
+	.StartText p {
+		font-size: 2em;
+	}
+	.copy{
+		text-align: center;
+		font-size: .8em;
+	}
+	.screenStart{
+		text-align: center;
+	}
+
+}
+
+@media screen and (min-width: 570px) and (max-width: 768px){
+	.thunder2{
+		left: 46%;
+	}
+	.thunder{
+		left: 67%;
+	}
+	.pipe{
+		left: -22%;
 	}
 	.mountain{
 		left: 55%;
 	}
 }
 
+@media screen and (min-width: 768px) and (max-width: 921px)  {
+	.pipe{
+		left: -41%;
+	}
+	.marioPhone{
+		position: relative;
+		height: 100px;
+		width: 50px;
+		top: -39px;
+		left: calc(50% - 25px);
+		z-index: 10;
+		display: inline-block;
+	}
+	.mario{
+		display: none;
+	}
+}
 
 @media screen and (min-width: 992px) {
 
@@ -520,13 +720,7 @@
 		left: 68%;
 	}
 	.bush{
-
 		left: 5%;
-
-	}
-	.pipe{
-
-		left: -25%;
 	}
 	.fireBold{
 		top: 87%;

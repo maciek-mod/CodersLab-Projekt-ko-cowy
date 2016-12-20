@@ -38,6 +38,7 @@ $(function(){
   var screenStart = $(".screenStart");
   var btnStart = $(".btnStart");
   var startText = $(".StartText");
+  var retry = gameScreen.find(".retry");
   var endScreen = gameScreen.find(".screenEnd");
   var endTxt = gameScreen.find(".endTxt");
   var gameOver = gameScreen.find(".gameOver");
@@ -95,19 +96,21 @@ $(function(){
 
   function deadMario(text1, text2){
     world.pause();
+    $(".evilCharakter").stop();
     setTimeout(function(){mario.css("backgroundImage", "url(img/marioGhost.png)")},500);
     setTimeout(function(){marioPhone.css("backgroundImage", "url(img/marioGhost.png)")},500);
     setTimeout(function(){soundDie.play()},500);
     setTimeout(function(){endScreen.css("visibility", "visible")},3000);
     setTimeout(function(){gameOver.text(text1)},3500);
     setTimeout(function(){endTxt.text(text2)},3500);
+
   }
 
 
   //polozenie kuli ognia na starcie
   var leftFireFirst = fireBold.css("left");
   var leftFire = parseInt(leftFireFirst) - 65;
-  // startGame();
+
   function startGame(){
 
     world.play();
@@ -124,6 +127,7 @@ $(function(){
           timeCount.text(counter);
           if (counter == 000) {
             world.pause();
+            $(".evilCharakter").stop();
             setTimeout(function(){endScreen.css("visibility", "visible")},1000);
             setTimeout(function(){gameOver.text("GAME OVER")},1500);
             setTimeout(function(){endTxt.text("Osiagnales wynik "+countMario.text() +" pkt")},1500);
@@ -228,15 +232,24 @@ $(function(){
     //celowanie
     gameScreen.on("click",  function(event){
 
-      //znalezienie evil clouda, aby przekazac jego wspolrzedne do funkcji collision
-      var evilCloudClone = $(".evilCharakter");
-
       //wspolrzedne x y klikniecia
       var top   = event.pageY;
       var left  = event.pageX;
 
+      //sprawdzanie czy jest ekran koncowy gre, jak tak przerywa wysylanie fireball's
+      var visEndScreen = endScreen.css("visibility");
+
+      if (visEndScreen !== "visible") {
+        fireBoldClone(top, left);
+      }
+    });
+
+    function fireBoldClone(x , y){
       //optymalziacja gry, mario będzie wypuszczał tylko jedną kule, a kolejna po zniknieciu wystrzelonej
       var sumFire = $(".fireBold").length;
+
+      //znalezienie evil clouda, aby przekazac jego wspolrzedne do funkcji collision
+      var evilCloudClone = $(".evilCharakter");
 
       if (1 >= sumFire) {
 
@@ -270,7 +283,7 @@ $(function(){
 
         //animacja lotu klonowanych fireballi, if odnosnie kolizji, ma nstepowac na wysokosci wystepowania evil Cloud (unikniecie buga)
         if (yClick < 300) {
-          fireClone.animate({ top: top, left: left }, {
+          fireClone.animate({ top: x, left: y }, {
             duration: speedBall,
             step    : function() {
               collision(fireClone.position(), fireBoldSize, evilCloudClone.position(), evilCloudSize);
@@ -284,11 +297,15 @@ $(function(){
               hideBall($(this));
             },
           });
-
+        }
+        //ukrywa kule ognia
+        var visEndScreen = endScreen.css("visibility");
+        if (visEndScreen === "visible") {
+          $(".fireBold").stop();
+          fire.pause();
         }
       }
-
-    });
+    }
 
     //poruszanie sie bosa
     function animateCloudEvil() {
@@ -366,5 +383,12 @@ $(function(){
     });
 
   };
+
+
+
+  //przladowanie ekranu po wcisnieciu btn retry
+  retry.on("click", function(event){
+    location.reload();
+  });
 
 });
