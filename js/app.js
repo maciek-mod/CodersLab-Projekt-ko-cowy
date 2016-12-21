@@ -229,116 +229,116 @@ $(function(){
 
     }
 
-    //celowanie
+    //celowanie i strzelanie
     gameScreen.on("click",  function(event){
 
       //wspolrzedne x y klikniecia
       var top   = event.pageY;
       var left  = event.pageX;
 
-      //sprawdzanie czy jest ekran koncowy gre, jak tak przerywa wysylanie fireball's
-      var visEndScreen = endScreen.css("visibility");
-
-      if (visEndScreen !== "visible") {
-        fireBoldClone(top, left);
-      }
-    });
-
-    function fireBoldClone(x , y){
       //optymalziacja gry, mario będzie wypuszczał tylko jedną kule, a kolejna po zniknieciu wystrzelonej
       var sumFire = $(".fireBold").length;
 
       //znalezienie evil clouda, aby przekazac jego wspolrzedne do funkcji collision
       var evilCloudClone = $(".evilCharakter");
 
-      if (1 >= sumFire) {
+      //sprawdzanie czy jest ekran koncowy gre, jak tak przerywa wysylanie fireball's
+      var visEndScreen = endScreen.css("visibility");
 
-        //zmiana pozycji do strzału
-        mario.addClass("marioFire");
+      //warunek odnosnie ekranu koncowego, jesli jest niewidoczny jets mozliwe strzelanie
+      if (visEndScreen !== "visible") {
 
-        setTimeout(function(){mario.removeClass("marioFire")}, 100);
-        //dzwiek strzalu
-        fire.play();
-        //powielanie kul ognia do wieloktornego strzalu
-        var fireClone = fireBold.clone().insertBefore(mario);
-        fireClone.css("visibility", "visible");
+        //warunek dla ilosci firball's na planszy
+        if (1 >= sumFire) {
 
-        //animacja krecenia sie kuli w locie
-        fireClone.animateSprite({
-          fps: 24,
-          animations: {
-            walkRight: [0, 1, 2],
-          },
-          loop: true,
+          //zmiana pozycji do strzału
+          mario.addClass("marioFire");
 
-        });
+          setTimeout(function(){mario.removeClass("marioFire")}, 100);
+          //dzwiek strzalu
+          fire.play();
+          //powielanie kul ognia do wieloktornego strzalu
+          var fireClone = fireBold.clone().insertBefore(mario);
+          fireClone.css("visibility", "visible");
 
-        //ruch kuli uzelzeniony od wysokosic klikniecia, im wyzej tym wolniej ma sie kula poruszac
-        var yClick = event.pageY;
-        if (yClick > 330) {
-          var speedBall = 750;
-        }else {
-          var speedBall = 550;
-        }
-
-        //animacja lotu klonowanych fireballi, if odnosnie kolizji, ma nstepowac na wysokosci wystepowania evil Cloud (unikniecie buga)
-        if (yClick < 300) {
-          fireClone.animate({ top: x, left: y }, {
-            duration: speedBall,
-            step    : function() {
-              collision(fireClone.position(), fireBoldSize, evilCloudClone.position(), evilCloudSize);
-              hideBall($(this));
+          //animacja krecenia sie kuli w locie
+          fireClone.animateSprite({
+            fps: 24,
+            animations: {
+              walkRight: [0, 1, 2],
             },
+            loop: true,
+
           });
-        }else {
-          fireClone.animate({ top: top, left: left }, {
-            duration: speedBall,
-            step    : function() {
-              hideBall($(this));
-            },
-          });
-        }
-        //ukrywa kule ognia
-        var visEndScreen = endScreen.css("visibility");
-        if (visEndScreen === "visible") {
-          $(".fireBold").stop();
-          fire.pause();
+
+          //ruch kuli uzelzeniony od wysokosic klikniecia, im wyzej tym wolniej ma sie kula poruszac
+          var yClick = event.pageY;
+          if (yClick > 330) {
+            var speedBall = 750;
+          }else {
+            var speedBall = 550;
+          }
+
+          //animacja lotu klonowanych fireballi, if odnosnie kolizji, ma nstepowac na wysokosci wystepowania evil Cloud (unikniecie buga)
+          if (yClick < 300) {
+            fireClone.animate({ top: top, left: left }, {
+              duration: speedBall,
+              step    : function() {
+                collision(fireClone.position(), fireBoldSize, evilCloudClone.position(), evilCloudSize);
+                hideBall($(this));
+              },
+            });
+          }else {
+            fireClone.animate({ top: top, left: left }, {
+              duration: speedBall,
+              step    : function() {
+                hideBall($(this));
+              },
+            });
+          }
+
         }
       }
-    }
+
+    });
 
     //poruszanie sie bosa
     function animateCloudEvil() {
-
 
       //losowanie x y dla pojawiającej sie Evil Cloud
       var leftFirst  = Math.floor((Math.random() * (bodyWidth - 50)) + 1);
       var topFirst  = Math.floor((Math.random() * 300) + 1);
 
-      //wstawianie do dom klonu evil cloud
-      var evilCloudClone = evilCloud.clone().insertBefore(mario);
-      //ustalenie startowa pozycje evil cloud
-      evilCloudClone.css({
-        "left": leftFirst,
-        "top": topFirst
-      });
-      evilCloudClone.css("display", "inline-block");
+      //sprawdzamy ile jest evil clodow, wymagane do warunku ograniczajacego ilosc zlych charakterow
+      var sumEvil = $(".evilCharakter").length;
 
+      if (1 >= sumEvil) {
+        //wstawianie do dom klonu evil cloud
+        var evilCloudClone = evilCloud.clone().insertBefore(mario);
+        //ustalenie startowa pozycje evil cloud
+        evilCloudClone.css({
+          "left": leftFirst,
+          "top": topFirst
+        });
+        evilCloudClone.css("display", "inline-block");
 
+        //losowanie x y i speed
+        var left  = Math.floor((Math.random() * (bodyWidth - 50)) + 1);
+        var top   = Math.floor((Math.random() * 300) + 1);
+        var speed = Math.floor((Math.random() * 2000) + 1000);
 
-      //losowanie x y i speed
-      var left  = Math.floor((Math.random() * (bodyWidth - 50)) + 1);
-      var top   = Math.floor((Math.random() * 300) + 1);
-      var speed = Math.floor((Math.random() * 2000) + 1000);
+        //animacja lotu evil cloud
+        evilCloudClone.animate({ top: top, left: left }, {
+          duration: speed,
+          queue   : false,
+          complete: animateCloudEvil
+        });
+        console.log(sumEvil);
 
-      //animacja lotu evil cloud
-      evilCloudClone.animate({ top: top, left: left }, {
-        duration: speed,
-        queue   : false,
-        complete: animateCloudEvil
-      });
-      //usuwanie nietrafionej chmurki z DOM, po czasie lotu
-      setTimeout(function(){evilCloudClone.remove()},(speed - 100));
+        // usuwanie nietrafionej chmurki z DOM, po czasie lotu
+        setTimeout(function(){evilCloudClone.remove()},speed - 100);
+      }
+
     };
 
     animateCloudEvil();
