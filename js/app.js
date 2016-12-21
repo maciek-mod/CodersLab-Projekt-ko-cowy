@@ -25,6 +25,7 @@ $(function(){
 
   //zmienna dla ograniczenia ruchu chmurtki, ze wzgledu na szerokosc ekranu
   var bodyWidth = $(window).width();
+  $(window).resize(function(){location.reload();});
 
   //chmurka i wymiary jej
   var evilCloud = gameScreen.find(".evilCharakter");
@@ -107,10 +108,6 @@ $(function(){
   }
 
 
-  //polozenie kuli ognia na starcie
-  var leftFireFirst = fireBold.css("left");
-  var leftFire = parseInt(leftFireFirst) - 65;
-
   function startGame(){
 
     world.play();
@@ -137,28 +134,49 @@ $(function(){
 
     }
 
+
+    //polozenie kuli ognia na starcie
+    var leftFireFirst = fireBold.css("left");
+    var marioWidth= mario.css("width");
+    var marioPhoneWidth= marioPhone.css("width");
+
+    var leftFire = parseInt(leftFireFirst) - parseInt(marioWidth) -(15);
+    var leftFirePhone = parseInt(leftFireFirst) - parseInt(marioPhoneWidth) -(15);
+
+    console.log(leftFirePhone);
+    console.log(leftFireFirst);
+
     //obracanie mario i przerzucanie fireballa na druga reke w wersji od tableta w gore
     gameScreen.on("mousemove",  function(event){
+
       var mouseX = event.pageX;
-      if (bodyWidth>768) {
+
+      //ustawianie odpowiedniej pozycji fireballa dla rozdzielczosci ekranu + dodawanie obracania sie Mariana
+      if (bodyWidth<768) {
         if ((bodyWidth/2)<mouseX) {
           fireBold.css({
             "left": leftFireFirst,
-            "top": fireBold.position().top
           });
-          mario.removeClass("mirror");
           marioPhone.removeClass("mirror");
         }else {
           fireBold.css({
+            "left": leftFirePhone,
+          });
+          marioPhone.addClass('mirror');
+        }
+      }else {
+        if ((bodyWidth/2)<mouseX) {
+          fireBold.css({
+            "left": leftFireFirst,
+          });
+          mario.removeClass("mirror");
+        }else {
+          fireBold.css({
             "left": leftFire,
-            "top": fireBold.css("top")
           });
           mario.addClass('mirror');
-          marioPhone.addClass("mirror");
         }
-
       }
-
     });
 
     //funkcja kolizji obiektow, oraz akcja po nim
@@ -251,10 +269,13 @@ $(function(){
         //warunek dla ilosci firball's na planszy
         if (1 >= sumFire) {
 
-          //zmiana pozycji do strzału
+          //zmiana pozycji do strzału oraz usuniecie klasy z klatka strzelania po 100 ms
           mario.addClass("marioFire");
+          marioPhone.addClass("marioFire");
 
+          setTimeout(function(){marioPhone.removeClass("marioFire")}, 100);
           setTimeout(function(){mario.removeClass("marioFire")}, 100);
+
           //dzwiek strzalu
           fire.play();
           //powielanie kul ognia do wieloktornego strzalu
@@ -333,7 +354,6 @@ $(function(){
           queue   : false,
           complete: animateCloudEvil
         });
-        console.log(sumEvil);
 
         // usuwanie nietrafionej chmurki z DOM, po czasie lotu
         setTimeout(function(){evilCloudClone.remove()},speed - 100);

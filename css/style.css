@@ -360,19 +360,7 @@
 	-webkit-transform: scale(-1, 1);
 	transform: scale(-1, 1);
 }
-/*klatka strzelania*/
-.marioFire{
-	background-image: url("../img/marioFire.png");
-	height: 100px;
-	width: 50px;
-	background-repeat: no-repeat;
-	background-size: contain;
-	position: absolute;
-	display: inline-block;
-	top: calc(100%  - 139px);
-	left: calc(50% - 25px);
-	z-index: 10;
-}
+
 .marioPhone{
 	display: none;
 	width: 33px;
@@ -767,4 +755,9 @@
 		width: 450px;
 
 	}
+}
+/*klatka strzelania dla mariana*/
+.marioFire{
+	background-image: url("../img/marioFire.png");
+
 }
